@@ -22,10 +22,56 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+function ListNode(x) {
+   this.value = x;
+   this.next = null
 }
+
+function removeKFromList(l, k) {
+   // create node
+   let node = new ListNode();
+   // assign node.next to the beginning of the given linked list.
+   node.next = l;
+
+   // start iterating through the linked list
+   let current = node;
+   // while there is still a node
+   while (current.next) {
+      // if the value of the node equals to given K
+      if (current.next.value === k) {
+         // remove it from the list by hopping from the one node to the next node
+         current.next = current.next.next
+      } else {
+         // move from one node to the next.
+         current = current.next;
+      }
+   }
+   //return the linked list
+   return node.next;
+}
+
+// All changes are in the part below:
+
+function arrayToList(arr) {
+   return arr.reduceRight((next, val) =>
+      Object.assign(new ListNode(val), { next })
+      , null);
+}
+
+function listToArray(list) {
+   const arr = [];
+   for (let node = list; node; node = node.next) {
+      arr.push(node.value);
+   }
+   return arr;
+}
+
+const list = arrayToList([3, 1, 2, 3, 4, 5]);
+const shorter = removeKFromList(list, 3);
+const result = listToArray(shorter);
+
+
 
 module.exports = {
   removeKFromList

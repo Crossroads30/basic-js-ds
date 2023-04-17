@@ -1,43 +1,65 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-
-//  Implement the Stack with a given interface via array.
-
-//  @example
-//   const stack = new Stack();
-
-//  stack.push(1); // adds the element to the stack
-//  stack.peek(); // returns the peek, but doesn't delete it, returns 1
-//  stack.pop(); // returns the top element from stack and deletes it, returns 1
-//  stack.pop(); // undefined
-function Stack() {
-   this.count = 0;
-   this.storage = {};
-
-   this.push = function (value) {
-      this.storage[this.count] = value;
-      this.count++;
+class Stack {
+   constructor() {
+      this.items = [];
    }
-
-   this.pop = function () {
-      if (this.count === 0) {
-         return undefined;
-      }
-      this.count--;
-      var result = this.storage[this.count];
-      delete this.storage[this.count];
-      return result;
+   push(element) {
+      // push element into the items
+      this.items.push(element);
    }
-
-   this.peek = function () {
-      return this.storage[this.count - 1];
+   pop() {
+      // return top most element in the stack
+      // and removes it from the stack
+      // Underflow if stack is empty
+      if (this.items.length == 0)
+         return "Underflow";
+      return this.items.pop();
    }
-
-   this.size = function () {
-      return this.count;
+   peek() {
+      // return the top most element from the stack
+      // but does'nt delete it.
+      return this.items[this.items.length - 1];
+   }
+   isEmpty() {
+      // return true if stack is empty
+      return this.items.length == 0;
+   }
+   printStack() {
+      var str = "";
+      for (var i = 0; i < this.items.length; i++)
+         str += this.items[i] + " ";
+      return str;
    }
 }
+// let stack = new Stack
+// console.log(stack.isEmpty());
+
+// // returns Underflow
+// console.log(stack.pop());
+
+
+// // Adding element to the stack
+// stack.push(10);
+// stack.push(20);
+// stack.push(30);
+
+// // Printing the stack element
+// // prints [10, 20, 30]
+// console.log(stack.printStack());
+
+// // returns 30
+// console.log(stack.peek());
+
+// // returns 30 and remove it from stack
+// console.log(stack.pop());
+
+// // returns [10, 20]
+// console.log(stack.printStack());
+
+
 
 module.exports = {
    Stack
 };
+

@@ -168,29 +168,30 @@ class BinarySearchTree {
       return node.value;
    }
 
-   // leftTraverse(cb) {
-   //    doLeft(this.root, cb);
+   leftTraverse(cb) {
+      doLeft(this.root, cb);
 
-   //    function doLeft(node, cb) {
-   //       if (node) {
-   //          doLeft(node.left, cb);
-   //          cb(node.value);
-   //          doLeft(node.right, cb);
-   //       }
-   //    }
-   // }
+      function doLeft(node, cb) {
+         if (node) {
+            doLeft(node.left, cb);
+            cb(node.value);
+            doLeft(node.right, cb);
+         }
+      }
+   }
 
-   // rightTraverse(cb) {
-   //    doRight(this.root, cb);
+   rightTraverse(cb) {
+      doRight(this.root, cb);
 
-   //    function doRight(node, cb) {
-   //       if (node) {
-   //          doRight(node.right, cb);
-   //          cb(node.value);
-   //          doRight(node.left, cb);
-   //       }
-   //    }
-   // }
+      function doRight(node, cb) {
+         if (node) {
+            doRight(node.right, cb);
+            cb(node.value);
+            doRight(node.left, cb);
+         }
+      }
+   }
+   
 }
 
 module.exports = {
